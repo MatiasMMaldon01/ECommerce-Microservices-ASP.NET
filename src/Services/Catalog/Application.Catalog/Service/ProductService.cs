@@ -97,7 +97,7 @@ namespace Application.Catalog.Service
                 }
                 else
                 {
-                    filter = Builders<Product>.Filter.Eq(x => x.Name, stringToFind);
+                    filter = Builders<Product>.Filter.Where(x => x.Name.ToLower().Contains(stringToFind.ToLower()));
                     request = _repository.GetByFilter(filter);
                 }
             }

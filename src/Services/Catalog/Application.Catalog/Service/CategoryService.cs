@@ -70,7 +70,7 @@ namespace Application.Catalog.Service
             }
             else
             {
-                FilterDefinition<Category> filter = Builders<Category>.Filter.Where(x => x.Description.Contains(stringToFind.ToLower()));
+                FilterDefinition<Category> filter = Builders<Category>.Filter.Where(x => x.Description.ToLower().Contains(stringToFind.ToLower()));
                 request = _repository.GetByFilter(filter);
             }
 
