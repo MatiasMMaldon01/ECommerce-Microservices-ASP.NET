@@ -3,11 +3,22 @@ version: '3.4'
 services:
   db.catalog:
     image: mongo
+  
+  db.basket:
+    image: redis:alpine
+
 
   api.catalog:
     image: ${DOCKER_REGISTRY-}apicatalog
     build:
       context: .
       dockerfile: Services/Catalog/Api.Catalog/Dockerfile
+
+  api.basket:
+    image: ${DOCKER_REGISTRY-}apibasket
+    build:
+      context: .
+      dockerfile: Services/Basket/Api.Basket/Dockerfile
+
 volumes:
   mongo_data:
