@@ -1,5 +1,5 @@
-﻿using Basket.API.Entities;
-using Basket.API.Repositories.Interfaces;
+﻿using Api.Basket.Entities;
+using Api.Basket.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -42,7 +42,7 @@ namespace Api.Basket.Controllers
             }
 
             await _repository.UpdateBasket(basket);
-            return Ok("Items from Basket deleted succesfully");
+            return Ok("Items from Basket created succesfully");
         }
 
         [HttpDelete("{userName}", Name = "DeleteBasket")]
@@ -50,7 +50,7 @@ namespace Api.Basket.Controllers
         public async Task<IActionResult> DeleteBasket(string userName)
         {
             await _repository.DeleteBasket(userName);
-            return Ok("Items from Basket created succesfully");
+            return Ok("Items from Basket deleted succesfully");
         }
 
     }

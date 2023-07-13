@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Basket.API.Entities
+namespace Api.Basket.Entities
 {
     public class ShoppingCart
     {

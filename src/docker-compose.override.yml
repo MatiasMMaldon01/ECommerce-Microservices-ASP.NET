@@ -70,6 +70,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "RedisSettings:ConnectionString=db.basket:6379"
+      - "GrpcSettings:DiscountUrl=http://grpc.discount"
     ports:
       - "3501:80"
     depends_on: 
@@ -85,3 +86,18 @@ services:
     depends_on:
       - db.discount
 
+
+  grpc.discount:
+    container_name: grpc.discount
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "PostgresSettings:ConnectionString=Server=host.docker.interal;Port=5432;Database=DiscountDb;User Id=admin;Password=admin123;"
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "3503:80"
+      - "3504:443"
+    depends_on:
+      - db.discount
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

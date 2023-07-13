@@ -1,7 +1,7 @@
-using Basket.API.Repositories.Interfaces;
-using Basket.API.Repositories;
 using Api.Basket.gRPCDiscountService;
 using gRPC.Discount.Protos;
+using Api.Basket.Repositories;
+using Api.Basket.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

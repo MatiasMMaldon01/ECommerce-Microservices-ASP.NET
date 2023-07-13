@@ -1,9 +1,9 @@
-﻿using Basket.API.Entities;
-using Basket.API.Repositories.Interfaces;
+﻿using Api.Basket.Entities;
+using Api.Basket.Repositories.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 
-namespace Basket.API.Repositories
+namespace Api.Basket.Repositories
 {
     public class BasketRepository : IBasketRepository
     {
@@ -18,7 +18,7 @@ namespace Basket.API.Repositories
         {
             var basket = await _redisCache.GetStringAsync(userName);
 
-            if (String.IsNullOrEmpty(basket))
+            if (string.IsNullOrEmpty(basket))
                 return null;
 
             return JsonConvert.DeserializeObject<ShoppingCart>(basket);

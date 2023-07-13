@@ -3,7 +3,7 @@ using gRPC.Discount.Repository.Interfaces;
 using Dapper;
 using Npgsql;
 
-namespace Api.Discount.Repository
+namespace gRPC.Discount.Repository
 {
     public class DiscountRepository : IDiscountRepository
     {
@@ -35,7 +35,7 @@ namespace Api.Discount.Repository
 
             if (coupon == null)
                 return new List<Coupon>() { new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Desc" } };
-         
+
 
             return coupon;
         }
@@ -45,7 +45,7 @@ namespace Api.Discount.Repository
 
             var affected =
                 await _connection.ExecuteAsync("INSERT INTO Coupon (ProductName, Description, Amount) VALUES (@ProductName, @Description, @Amount)",
-                            new { ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount });
+                            new { coupon.ProductName, coupon.Description, coupon.Amount });
 
             if (affected == 0)
                 return false;
@@ -57,7 +57,7 @@ namespace Api.Discount.Repository
         {
 
             var affected = await _connection.ExecuteAsync("UPDATE Coupon SET ProductName=@ProductName, Description = @Description, Amount = @Amount WHERE Id = @Id",
-                            new { ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount, Id = coupon.Id });
+                            new { coupon.ProductName, coupon.Description, coupon.Amount, coupon.Id });
 
             if (affected == 0)
                 return false;

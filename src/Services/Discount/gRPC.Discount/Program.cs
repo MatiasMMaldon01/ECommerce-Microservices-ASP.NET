@@ -1,5 +1,5 @@
-using Api.Discount.Repository;
 using gRPC.Discount.Extensions;
+using gRPC.Discount.Repository;
 using gRPC.Discount.Repository.Interfaces;
 using gRPC.Discount.Services;
 
